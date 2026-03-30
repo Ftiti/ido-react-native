@@ -1,4 +1,5 @@
 // app/(tabs-agent)/missions/_layout.tsx
+<<<<<<< HEAD
 import { Colors } from "@/constants/theme";
 import { Stack } from "expo-router";
 import { useColorScheme } from "react-native";
@@ -22,6 +23,17 @@ const MissionsLayout = () => {
       {/* Add other screens here if needed */}
     </Stack>
   );
+=======
+import { Stack } from "expo-router";
+import React from "react";
+
+const MissionsLayout = () => {
+   return (
+      <Stack>
+         <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+   );
+>>>>>>> main
 };
 
 export default MissionsLayout;

@@ -52,7 +52,6 @@ export const AgentRow = ({
   const usableWidth =
     cardWidth > 0 ? cardWidth - 32 : Dimensions.get("window").width - 64;
   const maxPerRow = Math.max(1, Math.floor(usableWidth / ITEM_SLOT));
-
   const firstRow = allAgents.slice(0, maxPerRow);
   const restRows = allAgents.slice(maxPerRow);
   const hasOverflow = restRows.length > 0;

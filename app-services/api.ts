@@ -17,8 +17,6 @@ export const api = axios.create({
 
 // Optional: attach token dynamically if using auth
 export const setAuthToken = (token: string | null) => {
-  console.log(token, "in api");
-
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {

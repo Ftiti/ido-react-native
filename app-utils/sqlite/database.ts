@@ -11,7 +11,7 @@ export async function getDB(): Promise<SQLite.SQLiteDatabase> {
 
 export async function query<T = any>(
   sql: string,
-  params: SQLite.SQLiteBindParams = []
+  params: SQLite.SQLiteBindParams = [],
 ): Promise<T[]> {
   const database = await getDB();
   return await database.getAllAsync<T>(sql, params);
@@ -19,14 +19,14 @@ export async function query<T = any>(
 
 export async function execute(
   sql: string,
-  params: SQLite.SQLiteBindParams = []
+  params: SQLite.SQLiteBindParams = [],
 ): Promise<void> {
   const database = await getDB();
   await database.runAsync(sql, params);
 }
 
 export async function transaction(
-  fn: (tx: SQLite.SQLiteDatabase) => Promise<void>
+  fn: (tx: SQLite.SQLiteDatabase) => Promise<void>,
 ) {
   const database = await getDB();
   await database.execAsync("BEGIN");
