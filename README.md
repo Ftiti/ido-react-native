@@ -1,50 +1,40 @@
-# Welcome to your Expo app 👋
+# IDIO — Field Operations App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+React Native (Expo Router) app for real estate agency field operations: agents and supervisors managing missions, absences, materials and reporting from the field.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Role-based navigation** — separate tab flows for field agents (`(tabs-agent)`) and supervisors (`(tabs-supervisor)`), same codebase
+- **Missions** — supervisor-side mission tracking and assignment
+- **Absences** — request, review and track: `add-absence`, `my-absences`, `absences-pending`, `absences-treated`, `absence-detail`
+- **Materials/equipment** — `pending-materials` and `processed-materials` workflows for equipment handed to field agents
+- **Real-time chat** — in-app messaging (`chat-room`) between agents and supervisors
+- **Documents** — field document capture and review
+- **Auth** — OTP-based login/verification flow
 
-   ```bash
-   npm install
-   ```
+## Architecture
 
-2. Start the app
+- **Expo Router** — file-based routing, route groups for auth vs. role-specific tabs
+- **TanStack Query + Axios** (`app-services/api.ts`, `queryClient.ts`) — server state, caching, retries
+- **Zustand** (`app-states/AuthStore.ts`) — local auth/session state
+- **expo-sqlite** — local persistence for offline-first field usage
+- **expo-image-picker** — photo capture for field reports
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+app/                 # Expo Router routes (auth, agent tabs, supervisor tabs, feature screens)
+app-services/         # API client, auth service, React Query client
+app-states/           # Zustand stores
+app-contexts/          # React contexts (e.g. font size / accessibility)
+components/           # shared UI (buttons, inputs, date picker, tab bar, toast...)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Running locally
 
-## Learn more
+```bash
+npm install
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Stack
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+React Native · Expo Router · TypeScript · TanStack Query · Zustand · Axios
